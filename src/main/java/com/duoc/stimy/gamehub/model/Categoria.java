@@ -1,5 +1,6 @@
 package com.duoc.stimy.gamehub.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Categoria {
     @Column(nullable = false, unique = true)
     private String nombre;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Videojuego> videojuegos;
 
