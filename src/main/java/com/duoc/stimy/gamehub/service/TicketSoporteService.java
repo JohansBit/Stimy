@@ -16,7 +16,7 @@ public class TicketSoporteService {
     @Autowired
     private TicketSoporteRepository ticketRepository;
 
-    // Cambiado a Long usuarioId
+
     public TicketSoporte crearTicket(Long usuarioId, String asunto, String descripcion) {
         log.info("Service: Creando ticket para el usuario ID: {}", usuarioId);
         TicketSoporte ticket = new TicketSoporte();
@@ -27,13 +27,13 @@ public class TicketSoporteService {
         return ticketRepository.save(ticket);
     }
 
-    // Cambiado a Long usuarioId
+
     public List<TicketSoporte> listarTicketsPorUsuario(Long usuarioId) {
         log.info("Service: Buscando tickets del usuario ID: {}", usuarioId);
         return ticketRepository.findByUsuarioId(usuarioId);
     }
 
-    // Cambiado a Long ticketId
+
     public TicketSoporte actualizarEstado(Long ticketId, String nuevoEstado) {
         log.info("Service: Actualizando ticket ID: {} a estado: {}", ticketId, nuevoEstado);
         TicketSoporte ticket = ticketRepository.findById(ticketId)

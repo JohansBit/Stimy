@@ -1,6 +1,6 @@
 package com.duoc.stimy.gamehub.controller;
 
-// 1. IMPORTS UNIFICADOS: Apuntando al paquete definitivo de tus compañeros
+
 import com.duoc.stimy.gamehub.dto.UsuarioRequestDTO;
 import com.duoc.stimy.gamehub.model.Usuario;
 import com.duoc.stimy.gamehub.service.UsuarioService;

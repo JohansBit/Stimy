@@ -17,10 +17,10 @@ public class TicketSoporte {
     private String asunto;
     private String descripcion;
 
-    // Por defecto el estado inicial será ABIERTO
+
     private String estado = "ABIERTO";
 
-    // Campos de fecha para solucionar los avisos del IDE
+
     private LocalDateTime fechaCreacion;
 
     @PrePersist

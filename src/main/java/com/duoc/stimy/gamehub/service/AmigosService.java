@@ -42,7 +42,7 @@ public class AmigosService {
         List<Amigos> relaciones = amigoRepository.findByUsuarioIdAndEstado(usuarioId, "ACEPTADO");
         List<Usuario> amigos = new ArrayList<>();
 
-        // Optimización de la Lambda (Para resolver el aviso del IDE)
+
         for (Amigos r : relaciones) {
             usuarioRepository.findById(r.getAmigoId()).ifPresent(amigos::add);
         }

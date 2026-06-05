@@ -1,6 +1,6 @@
 package com.duoc.stimy.gamehub.service;
 
-// 1. IMPORTS CORREGIDOS: Apuntando ahora sí al paquete definitivo gamehub
+
 import com.duoc.stimy.gamehub.dto.UsuarioRequestDTO;
 import com.duoc.stimy.gamehub.model.Usuario;
 import com.duoc.stimy.gamehub.repository.UsuarioRepository;

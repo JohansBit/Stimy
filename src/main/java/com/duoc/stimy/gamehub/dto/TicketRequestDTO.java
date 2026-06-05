@@ -8,7 +8,7 @@ import lombok.Data;
 public class TicketRequestDTO {
 
     @NotNull(message = "El ID del usuario es obligatorio")
-    private Long usuarioId; // CORREGIDO: Cambiado de Integer a Long
+    private Long usuarioId;
 
     @NotBlank(message = "El asunto es obligatorio")
     private String asunto;
