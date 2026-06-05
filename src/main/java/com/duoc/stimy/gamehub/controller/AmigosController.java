@@ -2,7 +2,7 @@ package com.duoc.stimy.gamehub.controller;
 
 import com.duoc.stimy.gamehub.dto.AmigoRequestDTO;
 import com.duoc.stimy.gamehub.model.Usuario;
-import com.duoc.stimy.gamehub.service.AmigoService;
+import com.duoc.stimy.gamehub.service.AmigosService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,24 +15,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/amigos")
-public class AmigoController {
+public class AmigosController {
 
-    private static final Logger log = LoggerFactory.getLogger(AmigoController.class);
+    private static final Logger log = LoggerFactory.getLogger(AmigosController.class);
 
     @Autowired
-    private AmigoService amigoService;
+    private AmigosService amigosService;
 
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarAmigo(@Valid @RequestBody AmigoRequestDTO dto) {
         log.info("Controller: Recibiendo petición POST para agregar amigo. Usuario ID: {}, Amigo ID: {}", dto.getUsuarioId(), dto.getAmigoId());
-        amigoService.agregarAmigo(dto.getUsuarioId(), dto.getAmigoId());
+        amigosService.agregarAmigo(dto.getUsuarioId(), dto.getAmigoId());
         return new ResponseEntity<>("Solicitud de amigo procesada con exito", HttpStatus.CREATED);
     }
 
     @GetMapping("/listar/{usuarioId}")
     public ResponseEntity<List<Usuario>> listarAmigos(@PathVariable Long usuarioId) {
         log.info("Controller: Recibiendo petición GET para listar amigos del usuario ID: {}", usuarioId);
-        List<Usuario> amigos = amigoService.listarAmigos(usuarioId);
+        List<Usuario> amigos = amigosService.listarAmigos(usuarioId);
         return new ResponseEntity<>(amigos, HttpStatus.OK);
     }
 }

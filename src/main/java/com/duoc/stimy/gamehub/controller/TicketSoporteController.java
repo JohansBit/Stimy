@@ -1,4 +1,4 @@
-package com.duoc.stimy.gamehub.controller;
+package com.duoc.stimy.gamehub.controller; // CORREGIDO: Ahora coincide con la carpeta física
 
 import com.duoc.stimy.gamehub.dto.TicketRequestDTO;
 import com.duoc.stimy.gamehub.model.TicketSoporte;

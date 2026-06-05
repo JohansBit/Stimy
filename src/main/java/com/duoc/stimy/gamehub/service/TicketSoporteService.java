@@ -1,9 +1,9 @@
 package com.duoc.stimy.gamehub.service;
 
-import com.duoc.stimy.base_service.model.TicketSoporte;
-import com.duoc.stimy.base_service.model.Usuario;
-import com.duoc.stimy.base_service.repository.TicketSoporteRepository;
-import com.duoc.stimy.base_service.repository.UsuarioRepository;
+import com.duoc.stimy.gamehub.model.TicketSoporte;
+import com.duoc.stimy.gamehub.repository.TicketSoporteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -11,34 +11,31 @@ import java.util.List;
 @Service
 public class TicketSoporteService {
 
+    private static final Logger log = LoggerFactory.getLogger(TicketSoporteService.class);
+
     @Autowired
     private TicketSoporteRepository ticketRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-
-    public TicketSoporte crearTicket(Integer usuarioId, String asunto, String descripcion) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
+    // Cambiado a Long usuarioId
+    public TicketSoporte crearTicket(Long usuarioId, String asunto, String descripcion) {
+        log.info("Service: Creando ticket para el usuario ID: {}", usuarioId);
         TicketSoporte ticket = new TicketSoporte();
-        ticket.setUsuario(usuario);
+        ticket.setUsuarioId(usuarioId);
         ticket.setAsunto(asunto);
         ticket.setDescripcion(descripcion);
-
+        ticket.setEstado("ABIERTO");
         return ticketRepository.save(ticket);
     }
 
-
-    public List<TicketSoporte> listarTicketsPorUsuario(Integer usuarioId) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        return ticketRepository.findByUsuario(usuario);
+    // Cambiado a Long usuarioId
+    public List<TicketSoporte> listarTicketsPorUsuario(Long usuarioId) {
+        log.info("Service: Buscando tickets del usuario ID: {}", usuarioId);
+        return ticketRepository.findByUsuarioId(usuarioId);
     }
 
-
-    public TicketSoporte actualizarEstado(Integer ticketId, String nuevoEstado) {
+    // Cambiado a Long ticketId
+    public TicketSoporte actualizarEstado(Long ticketId, String nuevoEstado) {
+        log.info("Service: Actualizando ticket ID: {} a estado: {}", ticketId, nuevoEstado);
         TicketSoporte ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new RuntimeException("Ticket no encontrado"));
         ticket.setEstado(nuevoEstado);

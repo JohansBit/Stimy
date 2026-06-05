@@ -1,6 +1,5 @@
 package com.duoc.stimy.gamehub.service;
 
-// 1. IMPORTS CORREGIDOS: Apuntando exactamente a la nueva ruta de tus compañeros
 import com.duoc.stimy.gamehub.model.Amigos;
 import com.duoc.stimy.gamehub.model.Usuario;
 import com.duoc.stimy.gamehub.repository.AmigosRepository;
