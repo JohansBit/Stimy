@@ -1,14 +1,18 @@
 package com.duoc.stimy.gamehub.service;
 
+import com.duoc.stimy.gamehub.client.VideojuegoClient; // IMPORTANTE: Tu nuevo cliente
 import com.duoc.stimy.gamehub.dto.LogroRequestDTO;
 import com.duoc.stimy.gamehub.model.Logro;
+import com.duoc.stimy.gamehub.model.Videojuego; // IMPORTANTE: Para mapear la lista
 import com.duoc.stimy.gamehub.repository.LogroRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+
 
 @Service
 public class LogroService {
@@ -18,8 +22,30 @@ public class LogroService {
     @Autowired
     private LogroRepository logroRepository;
 
+    @Autowired
+    private VideojuegoClient videojuegoClient; // Inyectamos el puente hacia Videojuegos
+
     public Logro crearLogro(LogroRequestDTO dto) {
+
         log.info("Service: Iniciando el proceso de creación del logro: {}", dto.getNombre());
+        // 1. PASO NUEVO: Validar contra el módulo de Videojuegos usando Feign
+        log.info("Service: Validando existencia del videojuego ID: {} en el catálogo...", dto.getVideojuegoId());
+        try {
+
+            List<Videojuego> juegos = videojuegoClient.obtenerTodosLosVideojuegos();
+            boolean existeJuego = juegos.stream()
+                    .anyMatch(j -> j.getId() != null && j.getId().equals(dto.getVideojuegoId()));
+            if (!existeJuego) {
+                log.error("Validation Fail: El videojuego con ID {} no existe en el sistema.", dto.getVideojuegoId());
+                throw new RuntimeException("No se puede crear el logro: El videojuego especificado no existe.");
+            }
+        } catch (feign.FeignException e) {
+            log.error("Error de comunicación interna con Videojuegos: {}", e.getMessage());
+            throw new RuntimeException("Servicio de verificación de videojuegos no disponible temporalmente.");
+        }
+
+        // 2. CÓDIGO ORIGINAL: Si el juego existe, se procede a guardar
+
         try {
             Logro nuevoLogro = new Logro();
             nuevoLogro.setNombre(dto.getNombre());
@@ -30,7 +56,6 @@ public class LogroService {
             Logro logroGuardado = logroRepository.save(nuevoLogro);
             log.info("Service: Logro creado exitosamente en la BD con ID: {}", logroGuardado.getId());
             return logroGuardado;
-
         } catch (Exception e) {
             log.error("Service: Fallo crítico al intentar guardar el logro {}: {}", dto.getNombre(), e.getMessage());
             throw new RuntimeException("Error al crear el logro en la base de datos: " + e.getMessage());

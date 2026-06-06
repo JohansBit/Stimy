@@ -14,19 +14,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name="usuarios")
-
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     @Column(name = "nombre_usuario", nullable = false, unique = true)
     private String nombreUsuario;
 
+    @NotNull(message = "La fecha de nacimiento es obligatoria")
     @Column(name = "fecha_nacimiento", nullable = false)
     private LocalDate fechaNacimiento;
 
+    @NotBlank(message = "La nacionalidad es obligatoria")
     @Column(nullable = false)
     private String nacionalidad;
 }

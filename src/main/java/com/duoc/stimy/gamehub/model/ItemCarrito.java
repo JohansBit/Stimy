@@ -31,6 +31,7 @@ public class ItemCarrito {
     @Positive(message = "El precio debe ser mayor a 0")
     @Column(name = "precio", nullable = false)
     private Double precio;
+}
 
 
 
