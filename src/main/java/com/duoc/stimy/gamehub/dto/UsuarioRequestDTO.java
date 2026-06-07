@@ -3,6 +3,14 @@ package com.duoc.stimy.gamehub.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 
 public class UsuarioRequestDTO {
 
@@ -15,33 +23,4 @@ public class UsuarioRequestDTO {
     @NotBlank(message = "La nacionalidad es obligatoria")
     private String nacionalidad;
 
-
-    public UsuarioRequestDTO() {
-    }
-
-
-    public String getNombreUsuario() {
-        return this.nombreUsuario;
-    }
-
-    public LocalDate getFechaNacimiento() {
-        return this.fechaNacimiento;
-    }
-
-    public String getNacionalidad() {
-        return this.nacionalidad;
-    }
-
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
 }

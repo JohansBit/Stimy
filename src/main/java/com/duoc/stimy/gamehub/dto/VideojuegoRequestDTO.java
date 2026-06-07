@@ -3,7 +3,13 @@ package com.duoc.stimy.gamehub.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VideojuegoRequestDTO {
 
     @NotBlank(message = "El título no puede estar vacío")
@@ -23,18 +29,5 @@ public class VideojuegoRequestDTO {
     @NotNull(message = "Debe indicar el ID de la categoría")
     private Long categoriaId;
 
-    public String getTitulo() { return titulo; }
-    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public Double getPrecio() { return precio; }
-    public void setPrecio(Double precio) { this.precio = precio; }
-
-    public String getDesarrolladora() { return desarrolladora; }
-    public void setDesarrolladora(String desarrolladora) { this.desarrolladora = desarrolladora; }
-
-    public Integer getAnioSalida() { return anioSalida; }
-    public void setAnioSalida(Integer anioSalida) { this.anioSalida = anioSalida; }
-
-    public Long getCategoriaId() { return categoriaId; }
-    public void setCategoriaId(Long categoriaId) { this.categoriaId = categoriaId; }
 }

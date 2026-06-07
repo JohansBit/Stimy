@@ -24,7 +24,7 @@ public class ItemCarrito {
     private Long usuarioId;
 
     @NotNull(message = "El ID del juego es obligatorio")
-    @Column(name = "videojuego_id", nullable = false)
+    @Column(name = "videojuegoId", nullable = false)
     private Long juegoId;
 
     @NotNull(message = "El precio es obligatorio")

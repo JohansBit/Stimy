@@ -35,4 +35,18 @@ public class VideojuegoController {
         List<Videojuego> lista = videojuegoService.obtenerTodos();
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VideojuegoRequestDTO> obtenerVideojuegoPorId(@PathVariable Long id) {
+        log.info("Controller: Recibiendo peticion GET para mostrar juego coincidente por Id: {}", id);
+        VideojuegoRequestDTO juego = new VideojuegoService().obtenerVideojuegoPorId(id);
+
+        if(juego != null){
+            log.info("Controller: Juego encontrado con éxito. Enviando respuesta...");
+            return ResponseEntity.ok(juego);
+        } else {
+            log.info("Controller: No se encontró ningún juego con el Id: {}", id);
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -56,4 +56,27 @@ public class VideojuegoService {
             throw new RuntimeException("Error al consultar la base de datos: " + e.getMessage());
         }
     }
+
+    public VideojuegoRequestDTO obtenerVideojuegoPorId(Long id){
+        log.info("Service: Buscando el  videojuego por ID: {}", id);
+
+        Videojuego videojuego = videojuegoRepository.findById(id).orElse(null);
+
+        if(videojuego == null){
+            log.warn("Service: No se encontró el videojuego con el ID: {}", id);
+            return null;
+
+        }
+
+        log.info("Service: Videojuego '{}' recuperado. Mapeando a DTO...", videojuego.getTitulo());
+        VideojuegoRequestDTO dto = new VideojuegoRequestDTO();
+        dto.setTitulo(videojuego.getTitulo());
+        dto.setPrecio(videojuego.getPrecio());
+        dto.setDesarrolladora(videojuego.getDesarrolladora());
+        dto.setAnioSalida(videojuego.getAnioSalida());
+        dto.setCategoriaId(videojuego.getCategoria().getId());
+        return dto;
+
+    }
+
 }
