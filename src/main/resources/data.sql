@@ -80,17 +80,17 @@ INSERT IGNORE INTO amigos (id, usuario_id, amigo_id, estado) VALUES (2, 2, 1, 'A
 -- ============================================
 -- 10. INSERTAR PAGOS
 --=============================================
-INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (101, 15000, 'COMPLETADO', '2026-06-01 14:30:00');
-INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (102, 35000, 'PENDIENTE', '2026-06-02 10:15:00');
-INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (103, 5000, 'RECHAZADO', '2026-06-03 18:45:00');
-INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (104, 60000, 'COMPLETADO', '2026-06-05 09:20:00');
-INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (105, 22500, 'REEMBOLSADO', '2026-06-06 16:00:00');
+INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (1, 15000, 'COMPLETADO', '2026-06-01 14:30:00');
+INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (1, 35000, 'PENDIENTE', '2026-06-02 10:15:00');
+INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (1, 5000, 'RECHAZADO', '2026-06-03 18:45:00');
+INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (2, 60000, 'COMPLETADO', '2026-06-05 09:20:00');
+INSERT INTO Pagos (usuarioId, montoTotal, estado, fechaPago) VALUES (2, 22500, 'REEMBOLSADO', '2026-06-06 16:00:00');
 
 -- ============================================
 -- 11. INSERTAR BIBLIOTECA
 -- ============================================
-INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (101, 1, '2026-06-01 14:35:00');
-INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (101, 3, '2026-06-01 14:35:00');
-INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (102, 2, '2026-06-02 10:20:00');
-INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (104, 1, '2026-06-05 09:25:00');
-INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (104, 5, '2026-06-05 18:00:00');
+INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (1, 1, '2026-06-01 14:35:00');
+INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (1, 3, '2026-06-01 14:35:00');
+INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (1, 2, '2026-06-02 10:20:00');
+INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (2, 1, '2026-06-05 09:25:00');
+INSERT INTO biblioteca (usuarioId, videojuegoId, fechaCompra) VALUES (2, 5, '2026-06-05 18:00:00');
