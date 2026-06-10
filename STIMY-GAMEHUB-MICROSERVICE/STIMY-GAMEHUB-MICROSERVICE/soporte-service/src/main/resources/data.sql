@@ -1,0 +1,5 @@
+INSERT IGNORE INTO tickets (id, asunto, descripcion, estado, fecha_creacion, usuario_id) VALUES (1, 'Error en descarga', 'El juego se queda pegado en 99% y no avanza.', 'ABIERTO', '2023-11-25', 1);
+INSERT IGNORE INTO tickets (id, asunto, descripcion, estado, fecha_creacion, usuario_id) VALUES (2, 'Problema de pago', 'Me cobraron el juego doble en la tarjeta.', 'EN_PROCESO', '2023-11-26', 1);
+INSERT IGNORE INTO tickets (id, asunto, descripcion, estado, fecha_creacion, usuario_id) VALUES (3, 'Cuenta hackeada', 'No puedo entrar a mi perfil, cambiaron mi clave.', 'ABIERTO', '2023-11-27', 2);
+INSERT IGNORE INTO tickets (id, asunto, descripcion, estado, fecha_creacion, usuario_id) VALUES (4, 'Error de servidor', 'No conecta a las partidas multijugador.', 'RESUELTO', '2023-11-24', 2);
+INSERT IGNORE INTO tickets (id, asunto, descripcion, estado, fecha_creacion, usuario_id) VALUES (5, 'Reembolso solicitado', 'Compre un juego por error y quiero mi dinero.', 'ABIERTO', '2023-11-28', 1);

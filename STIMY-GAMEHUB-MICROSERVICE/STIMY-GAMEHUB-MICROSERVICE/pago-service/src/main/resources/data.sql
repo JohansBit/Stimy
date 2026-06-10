@@ -1,0 +1,4 @@
+INSERT IGNORE INTO transacciones (id, usuario_id, monto, metodo_pago, estado, fecha_transaccion) VALUES (1, 1, 29.99, 'TARJETA_CREDITO', 'APROBADO', '2023-11-20');
+INSERT IGNORE INTO transacciones (id, usuario_id, monto, metodo_pago, estado, fecha_transaccion) VALUES (2, 1, 79.98, 'WEBPAY', 'APROBADO', '2023-11-22');
+INSERT IGNORE INTO transacciones (id, usuario_id, monto, metodo_pago, estado, fecha_transaccion) VALUES (3, 2, 59.99, 'PAYPAL', 'APROBADO', '2023-11-25');
+INSERT IGNORE INTO transacciones (id, usuario_id, monto, metodo_pago, estado, fecha_transaccion) VALUES (4, 2, 39.99, 'TARJETA_DEBITO', 'RECHAZADO', '2023-11-26');

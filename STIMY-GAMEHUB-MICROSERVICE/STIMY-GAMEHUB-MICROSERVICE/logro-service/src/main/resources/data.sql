@@ -1,0 +1,10 @@
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (1, 'Bienvenido a Los Santos', 'Completa la primera misión del juego.', 10, 1);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (2, 'Oro macizo, amigo', 'Gana 70 medallas de oro en misiones de historia.', 50, 1);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (3, 'Rip and Tear', 'Mata a tu primer demonio.', 5, 2);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (4, 'Carnicero de Blaviken', 'Mata al menos a 5 rivales en menos de 10 segundos.', 20, 3);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (5, 'Reyerta callejera', 'Derrota a un oponente en una pelea a puñetazos sin recibir daño.', 15, 3);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (6, 'Aniquilador Absoluto', 'Derrota al jefe final en dificultad máxima.', 100, 2);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (7, 'Explorador de Hyrule', 'Descubre todas las regiones del mapa.', 30, 5);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (8, 'Sin rastro', 'Completa un nivel sin ser detectado por ningún enemigo.', 25, 1);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (9, 'Señor del Círculo', 'Consigue todos los trofeos del juego.', 150, 4);
+INSERT IGNORE INTO logros (id, nombre, descripcion, puntos_recompensa, videojuego_id) VALUES (10, 'Coleccionista', 'Encuentra todos los artefactos ocultos.', 40, 3);

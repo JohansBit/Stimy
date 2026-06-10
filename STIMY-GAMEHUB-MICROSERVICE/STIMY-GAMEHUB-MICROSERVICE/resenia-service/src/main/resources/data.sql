@@ -1,0 +1,8 @@
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (1, 5, 'Una obra maestra absoluta, nunca me canso de jugarlo.', '2023-11-01', 1, 1);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (2, 4, 'Mucha acción, pero un poco repetitivo al final.', '2023-11-05', 2, 1);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (3, 5, 'El mejor juego que he jugado en mi vida. Muy difícil pero satisfactorio.', '2023-11-10', 4, 2);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (4, 3, 'Gráficos increíbles pero la historia se queda muy floja.', '2023-11-12', 3, 2);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (5, 1, 'Lleno de errores de lanzamiento, esperen a que saquen parches.', '2023-11-15', 5, 1);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (6, 5, 'Excelente jugabilidad y la banda sonora es arte puro.', '2023-11-18', 2, 2);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (7, 4, 'Divertido para jugar con amigos, vale totalmente la pena.', '2023-11-20', 1, 2);
+INSERT IGNORE INTO resenias (id, calificacion, comentario, fecha_publicacion, videojuego_id, usuario_id) VALUES (8, 2, 'Muy corto para el precio que tiene, decepcionado.', '2023-11-22', 3, 1);
