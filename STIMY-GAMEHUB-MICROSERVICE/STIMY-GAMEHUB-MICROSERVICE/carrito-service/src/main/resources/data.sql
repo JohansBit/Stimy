@@ -1,0 +1,15 @@
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (1, 1, 1, 29.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (2, 1, 2, 39.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (3, 2, 3, 39.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (4, 1, 3, 39.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (5, 1, 5, 59.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (6, 2, 4, 59.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (7, 2, 1, 29.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (8, 1, 4, 59.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (9, 2, 2, 39.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (10, 2, 5, 59.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (11, 1, 1, 29.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (12, 1, 2, 39.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (13, 2, 1, 29.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (14, 2, 4, 59.99);
+INSERT IGNORE INTO items_carrito (id, usuario_id, videojuego_id, precio) VALUES (15, 1, 5, 59.99);

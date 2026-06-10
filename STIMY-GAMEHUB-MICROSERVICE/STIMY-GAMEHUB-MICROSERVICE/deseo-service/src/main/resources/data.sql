@@ -1,0 +1,10 @@
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (1, 1, 1, '2023-10-15');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (2, 1, 3, '2023-10-16');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (3, 2, 4, '2023-10-20');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (4, 2, 5, '2023-10-21');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (5, 1, 2, '2023-10-22');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (6, 1, 4, '2023-10-23');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (7, 2, 1, '2023-10-24');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (8, 2, 2, '2023-10-25');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (9, 1, 5, '2023-10-26');
+INSERT IGNORE INTO lista_deseos (id, usuario_id, videojuego_id, fecha_agregado) VALUES (10, 2, 3, '2023-10-27');
