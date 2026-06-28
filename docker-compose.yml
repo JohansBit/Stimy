@@ -1,0 +1,126 @@
+version: '3.8'
+
+services:
+  # =========================================================================
+  # 🐘 BASE DE DATOS CENTRALIZADA (POSTGRESQL)
+  # =========================================================================
+  postgres-db:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tu_contrasena_postgres
+
+  # =========================================================================
+  # 🚪 ENRUTAMIENTO PERIMETRAL
+  # =========================================================================
+  api-gateway:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  # =========================================================================
+  # 🎮 MICROSERVICIOS NÚCLEO (CORE SERVICES)
+  # =========================================================================
+  videojuego-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/videojuego-service
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8091"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_videojuego_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  usuario-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/usuario-service
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8092"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_usuario_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  # =========================================================================
+  # ⚙️ MICROSERVICIOS SATÉLITES (LOGIC SERVICES)
+  # =========================================================================
+  carrito-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/carrito-service
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8093"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_carrito_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  deseo-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/deseo-service
+      dockerfile: Dockerfile
+    ports:
+      - "8094:8094"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_deseo_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  logro-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/logro-service
+      dockerfile: Dockerfile
+    ports:
+      - "8095:8095"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_logro_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  resenia-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/resenia-service
+      dockerfile: Dockerfile
+    ports:
+      - "8096:8096"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_resenia_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  soporte-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/soporte-service
+      dockerfile: Dockerfile
+    ports:
+      - "8097:8097"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_soporte_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
