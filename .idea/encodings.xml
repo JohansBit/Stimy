@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/carrito-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/deseo-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/logro-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/pago-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/resenia-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/usuario-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/videojuego-service/src/main/java" charset="UTF-8" />
+  </component>
+</project>
