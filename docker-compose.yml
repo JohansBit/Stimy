@@ -13,14 +13,24 @@ services:
       POSTGRES_PASSWORD: tu_contrasena_postgres
 
   # =========================================================================
-  # 🚪 ENRUTAMIENTO PERIMETRAL
+  # 🚪 ENRUTAMIENTO PERIMETRAL (API GATEWAY)
   # =========================================================================
   api-gateway:
     build:
       context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/api-gateway
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8080"  # Puerto por donde entrarán todas las peticiones desde Postman / Frontend
+    environment:
+      - VIDEOJUEGO_SERVICE_URL=http://videojuego-service:8091
+      - USUARIO_SERVICE_URL=http://usuario-service:8092
+      - CARRITO_SERVICE_URL=http://carrito-service:8093
+      - DESEO_SERVICE_URL=http://deseo-service:8094
+      - LOGRO_SERVICE_URL=http://logro-service:8095
+      - RESENIA_SERVICE_URL=http://resenia-service:8096
+      - SOPORTE_SERVICE_URL=http://soporte-service:8097
+      - PAGO_SERVICE_URL=http://pago-service:8098
+      - BIBLIOTECA_SERVICE_URL=http://biblioteca-service:8099
 
   # =========================================================================
   # 🎮 MICROSERVICIOS NÚCLEO (CORE SERVICES)
@@ -124,3 +134,32 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_soporte_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  pago-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/pago-service
+      dockerfile: Dockerfile
+    ports:
+      - "8098:8098"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_pago_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+
+  biblioteca-service:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service
+      dockerfile: Dockerfile
+    ports:
+      - "8099:8099"
+    depends_on:
+      - postgres-db
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_biblioteca_db_dev
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
