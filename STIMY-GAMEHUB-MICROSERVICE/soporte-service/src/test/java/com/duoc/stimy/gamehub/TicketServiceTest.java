@@ -39,7 +39,6 @@ public class TicketServiceTest {
 		dto.setDescripcion("El juego cobró pero no aparece en mi biblioteca.");
 
 		UsuarioRemotoDTO usuarioFake = new UsuarioRemotoDTO();
-		usuarioFake.setNombre("Johan");
 
 		when(usuarioClient.obtenerUsuarioPorId(45L)).thenReturn(usuarioFake);
 

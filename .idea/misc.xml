@@ -4,12 +4,20 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/carrito-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/deseo-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/logro-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/pago-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/resenia-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/usuario-service/pom.xml" />
+        <option value="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/videojuego-service/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="ms-21" project-jdk-type="JavaSDK" />
 </project>
