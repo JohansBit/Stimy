@@ -1,73 +1,65 @@
-# GameHub (Stimy) - Backend de Microservicios
+# 🎮 Stimy GameHub - Plataforma de Microservicios
 
-Este repositorio contiene la arquitectura backend de GameHub (Stimy), una plataforma de distribución digital de videojuegos. El sistema está estructurado bajo un modelo de arquitectura distribuida compuesto por 10 microservicios independientes y un componente de enrutamiento perimetral. Cada módulo funciona de manera autónoma con su propio ciclo de vida y archivo de dependencias Maven (pom.xml).
-
----
-
-## 1. Requisitos Previos del Sistema
-
-Para la correcta ejecución del ecosistema, el entorno local debe cumplir con las siguientes especificaciones:
-
-* Java Development Kit (JDK): Versión 21.
-* Gestor de Base de Datos: Laragon (Motor MariaDB o MySQL activo).
-* Persistencia: Al abrir el proyecto es necesario tener prendida una base de datos como Laragon para permitir la conexión de los repositorios y la ejecución de los scripts data.sql de inicialización.
+¡Bienvenido al repositorio oficial de **Stimy GameHub**! Este sistema ha sido diseñado y estructurado bajo una arquitectura de microservicios robusta utilizando **Spring Boot (Java)**. En esta versión final, el ecosistema se encuentra centralizado mediante un **POM Padre** y su despliegue ha sido completamente automatizado utilizando **Docker**.
 
 ---
 
-## 2. Matriz de Puertos y Enrutamiento Estático
-
-Toda interacción externa proveniente de clientes o Postman se centraliza a través del API Gateway en el puerto 8080. Este componente redirige las peticiones de manera estática hacia los siguientes puertos locales:
-
-* api-gateway -> Puerto 8080 (Puerta de enlace perimetral)
-* videojuego-service -> Puerto 8091 (Ruta: /api/videojuegos/**)
-* usuario-service -> Puerto 8092 (Ruta: /api/usuarios/**)
-* carrito-service -> Puerto 8093 (Ruta: /api/carritos/**)
-* deseo-service -> Puerto 8094 (Ruta: /api/deseos/**)
-* logro-service -> Puerto 8095 (Ruta: /api/logros/**)
-* resenia-service -> Puerto 8096 (Ruta: /api/resenias/**)
-* soporte-service -> Puerto 8097 (Ruta: /api/soporte/**)
-* pago-service -> Puerto 8098 (Ruta: /api/pagos/**)
-* biblioteca-service -> Puerto 8099 (Ruta: /api/bibliotecas/**)
+## 📋 Requisitos del Sistema
+Antes de ejecutar el proyecto, asegúrate de contar con las siguientes herramientas instaladas en tu entorno local:
+* **Java Development Kit (JDK):** Versión 21 (Obligatorio).
+* **Docker Desktop:** Esencial para el levantamiento automatizado con contenedores (asegúrate de tenerlo abierto antes de iniciar).
+* **Git:** Para la gestión de ramas y sincronización del código.
+* **IDE Recomendado:** IntelliJ IDEA (con soporte para plugins de Maven y Lombok).
+* *Nota: No se requiere Laragon ni bases de datos PostgreSQL nativas en Windows si se utiliza el despliegue por Docker.*
 
 ---
 
-## 3. Guía de Ejecución y Despliegue
-
-Siga este orden secuencial para levantar el ecosistema correctamente y evitar excepciones de red durante las pruebas de integración:
-
-1. Paso 1: Inicie los servicios de Laragon y verifique que el motor de base de datos esté corriendo.
-2. Paso 2: Primero iniciamos la App de Api Gateway (Puerto 8080) para habilitar el punto de entrada perimetral.
-3. Paso 3: Consecutivamente se inician los demás microservicios de lógica de negocio desde sus respectivas clases principales.
-
----
-
-## 4. Endpoints Críticos para Evidencia Técnica (Postman)
-
-Las pruebas deben ejecutarse apuntando exclusivamente al puerto del Gateway (8080).
-
-### A. Verificación de la Tienda (Catálogo de Videojuegos)
-Método GET enviado a la ruta del servicio de videojuegos. Retorna una respuesta con la colección completa de los videojuegos disponibles en la plataforma.
-* Método: GET
-* URL: http://localhost:8080/api/videojuegos
-
-### B. Consulta de Biblioteca por Usuario
-Método GET enviado a la ruta del servicio de biblioteca. Retorna los juegos disponibles asociados de forma específica al usuario ID que se ingrese en la URL.
-* Método: GET
-* URL: http://localhost:8080/api/bibliotecas/{usuarioId}
+## 🏗️ Estándares de Diseño y Arquitectura
+El desarrollo de Stimy GameHub se rige bajo patrones de diseño modernos para asegurar scalabilidad y desacoplamiento:
+* **Arquitectura Orientada a Microservicios (SOA):** Cada dominio de la aplicación cuenta con su propia lógica y persistencia aislada.
+* **Patrón API Gateway:** Centraliza el acceso perimetral al ecosistema, gestionando la seguridad y el ruteo.
+* **Service Discovery (Descubrimiento Dinámico):** Permite que los servicios se localicen entre sí sin necesidad de hardcodear direcciones IP.
+* **DTO (Data Transfer Objects):** Encapsulamiento estricto de los datos en tránsito entre las capas de controlador y servicio.
+* **Patrón Repositorio:** Soportado por Spring Data JPA para la abstracción de consultas hacia la base de datos PostgreSQL.
 
 ---
 
-## 5. Tecnologías Aprendidas
+## 📊 Matriz de Puertos y Servicios
 
-Durante el desarrollo y la reestructuración de este proyecto, se asimilaron e implementaron las siguientes tecnologías clave de arquitectura distribuida:
+El ecosistema distribuye sus responsabilidades y contenedores a través de la siguiente asignación de red local:
 
-* **Eureka Server:** Entendimiento conceptual de los servidores de descubrimiento de instancias de red para el registro dinámico de microservicios.
-* **API Gateway:** Implementación de una puerta de enlace perimetral centralizada para gestionar el enrutamiento estático de peticiones externas, control de rutas semánticas y abstracción de los puertos internos del ecosistema.
-* **DTOs (Data Transfer Objects):** Diseño y uso de objetos de transferencia de datos independientes para desacoplar las entidades de la base de datos de la lógica expuesta en los endpoints, optimizando la comunicación inter-servicio.
+| Componente / Servicio | Puerto Local / Rango | Descripción |
+| :--- | :--- | :--- |
+| **gamehub-postgres** | `5432` | Base de datos PostgreSQL relacional centralizada. |
+| **gamehub-eureka** | `8761` | Servidor de Descubrimiento (Eureka Server). |
+| **gamehub-gateway** | `8080 - 8089` | API Gateway Perimetral (Asignación elástica mediante `random.int`). |
+| **videojuego-service** | `8091` | Microservicio Núcleo: Catálogo central de videojuegos. |
+| **usuario-service** | `8092` | Microservicio Núcleo: Registro y gestión de perfiles de usuario. |
+| **carrito-service** | `8093` | Microservicio Satélite: Gestión temporal de compras. |
+| **deseo-service** | `8094` | Microservicio Satélite: Lista de deseos y seguimiento. |
+| **logro-service** | `8095` | Microservicio Satélite: Sistema de recompensas y trofeos. |
+| **resenia-service** | `8096` | Microservicio Satélite: Sistema de calificaciones y comunidad. |
+| **soporte-service** | `8097` | Microservicio Satélite: Postventa y tickets de ayuda. |
+| **pago-service** | `8098` | Microservicio Satélite: Pasarela transaccional. |
+| **biblioteca-service** | `8099` | Microservicio Satélite: Biblioteca de juegos adquiridos. |
 
----
+---Tecnologías Aprendidas e Implementadas
+A lo largo del desarrollo de esta plataforma se han consolidado competencias clave en el desarrollo de software empresarial:
 
-## 6. Estándares de Diseño
+Ecosistema Java 21 y Spring Cloud: Uso de características modernas de LTS de Java junto con Eureka Server y Spring Cloud Gateway.
 
-* Arquitectura Interna: Implementación del patrón por capas CSR (Controller - Service - Repository) para asegurar la separación de responsabilidades.
-* Validación y Consistencia: Uso de Jakarta Bean Validation (@Valid) en los controladores para la restricción de datos de entrada.
+Contenedorización con Docker: Creación de entornos replicables y aislados mediante multi-staging y Docker Compose con healthchecks avanzados.
+
+Maven Multimódulo: Configuración de proyectos complejos a través de un archivo POM jerárquico que hereda dependencias y automatiza compilaciones.
+
+Ruteo y Balanceo Elástico: Manejo de propiedades dinámicas en Spring Boot para flexibilizar la infraestructura de red en tiempo de ejecución.
+
+Integración con Bases de Datos en Red: Sincronización de variables de entorno para la comunicación persistente entre contenedores Docker aislados.
+
+## 🚀 Guía de Ejecución y Despliegue
+
+### 🐳 Opción 1: Despliegue Automatizado (Recomendado)
+Para levantar el ecosistema completo en fila india sin preocuparse por configuraciones manuales, abre tu terminal (CMD, PowerShell o Git Bash) en la raíz del proyecto y ejecuta:
+
+```bash
+docker compose up --build
