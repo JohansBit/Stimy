@@ -7,17 +7,19 @@
     <groupId>com.duoc.stimy</groupId>
     <artifactId>gamehub-parent</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging> <modules>
-    <module>eureka-server</module>
-    <module>api-gateway</module>
-    <module>usuario-service</module>
-    <module>videojuego-service</module>
-    <module>carrito-service</module>
-    <module>deseo-service</module>
-    <module>logro-service</module>
-    <module>resenia-service</module>
-    <module>soporte-service</module>
-    <module>pago-service</module>
-    <module>biblioteca-service</module>
-</modules>
+    <packaging>pom</packaging>
+    <modules>
+        <module>STIMY-GAMEHUB-MICROSERVICE/eureka-server</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/api-gateway</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/usuario-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/videojuego-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/carrito-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/deseo-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/logro-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/resenia-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/soporte-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/pago-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/biblioteca-service</module>
+    </modules>
+
 </project>
