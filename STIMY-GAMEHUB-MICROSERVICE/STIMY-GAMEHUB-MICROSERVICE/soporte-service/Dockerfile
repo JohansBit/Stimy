@@ -1,14 +1,14 @@
-# 1. Partimos de la imagen ligera oficial de Java 21
+# 1. Usamos la imagen ligera oficial de Java 21 para el contenedor
 FROM openjdk:21-slim
 
-# 2. Definimos el directorio de trabajo interno
+# 2. Definimos el directorio de trabajo interno en el contenedor
 WORKDIR /app
 
-# 3. Copiamos el JAR compilado por Maven al contenedor
-COPY target/carrito-service-0.0.1-SNAPSHOT.jar app.jar
+# 3. Copiamos el archivo JAR compilado por Maven dentro de la imagen
+COPY target/soporte-service-0.0.1-SNAPSHOT.jar app.jar
 
-# 4. Declaramos el puerto estático correspondiente al carrito (8093)
-EXPOSE 8093
+# 4. Exponemos el puerto oficial asignado a este microservicio (8097)
+EXPOSE 8097
 
-# 5. Comando ejecutor para iniciar la aplicación
+# 5. Comando definitivo para arrancar el microservicio
 ENTRYPOINT ["java", "-jar", "app.jar"]
