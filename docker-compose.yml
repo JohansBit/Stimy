@@ -23,8 +23,8 @@ services:
   # =========================================================================
   eureka-server:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: eureka-server/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/eureka-server
+      dockerfile: Dockerfile
     container_name: gamehub-eureka
     ports:
       - "8761:8761"
@@ -41,8 +41,8 @@ services:
   # =========================================================================
   api-gateway:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: api-gateway/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/api-gateway
+      dockerfile: Dockerfile
     container_name: gamehub-gateway
     ports:
       - "8080-8089:8080-8089" # Mapeo elástico para tu puerto random.int
@@ -58,8 +58,8 @@ services:
   # =========================================================================
   videojuego-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: videojuego-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/videojuego-service
+      dockerfile: Dockerfile
     container_name: gamehub-videojuegos
     ports:
       - "8091:8091"
@@ -77,8 +77,8 @@ services:
 
   usuario-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: usuario-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/usuario-service
+      dockerfile: Dockerfile
     container_name: gamehub-usuarios
     ports:
       - "8092:8092"
@@ -99,8 +99,8 @@ services:
   # =========================================================================
   carrito-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: carrito-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/carrito-service
+      dockerfile: Dockerfile
     container_name: gamehub-carrito
     ports:
       - "8093:8093"
@@ -118,8 +118,8 @@ services:
 
   deseo-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: deseo-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/deseo-service
+      dockerfile: Dockerfile
     container_name: gamehub-deseos
     ports:
       - "8094:8094"
@@ -137,9 +137,9 @@ services:
 
   logro-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: logro-service/Dockerfile
-    container_name: gamehub-logros
+      context: ./STIMY-GAMEHUB-MICROSERVICE/logro-service
+      dockerfile: Dockerfile
+    container_name: gamehub-logro
     ports:
       - "8095:8095"
     depends_on:
@@ -156,8 +156,8 @@ services:
 
   resenia-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: resenia-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/resenia-service
+      dockerfile: Dockerfile
     container_name: gamehub-resenias
     ports:
       - "8096:8096"
@@ -175,8 +175,8 @@ services:
 
   soporte-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: soporte-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/soporte-service
+      dockerfile: Dockerfile
     container_name: gamehub-soporte
     ports:
       - "8097:8097"
@@ -192,8 +192,8 @@ services:
 
   pago-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: pago-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/pago-service
+      dockerfile: Dockerfile
     container_name: gamehub-pagos
     ports:
       - "8098:8098"
@@ -211,8 +211,8 @@ services:
 
   biblioteca-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE
-      dockerfile: biblioteca-service/Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE/biblioteca-service
+      dockerfile: Dockerfile
     container_name: gamehub-biblioteca
     ports:
       - "8099:8099"

@@ -1,14 +1,16 @@
-# 1. Partimos de la imagen ligera oficial de Java 21
-FROM openjdk:21-slim
-
-# 2. Definimos el directorio de trabajo interno
+# Etapa 1: Compilación
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
+# Copiamos el código fuente y el pom.xml
+COPY pom.xml .
+COPY src ./src
+# Compilamos saltando los tests para ir más rápido
+RUN mvn clean package -DskipTests
 
-# 3. Copiamos el JAR compilado por Maven al contenedor
-COPY target/carrito-service-0.0.1-SNAPSHOT.jar app.jar
-
-# 4. Declaramos el puerto estático correspondiente al carrito (8093)
+# Etapa 2: Imagen de ejecución (ligera)
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+# Copiamos el JAR generado desde la etapa de compilación
+COPY --from=build /app/target/carrito-service-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8093
-
-# 5. Comando ejecutor para iniciar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]

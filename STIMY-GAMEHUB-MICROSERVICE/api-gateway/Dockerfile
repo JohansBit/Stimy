@@ -1,14 +1,16 @@
-# 1. Usamos la imagen ligera oficial de Java 21
-FROM openjdk:21-slim
-
-# 2. Definimos el directorio de trabajo interno en el contenedor
+# Etapa 1: Compilación
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
+# Copiamos el código fuente y el pom.xml
+COPY pom.xml .
+COPY src ./src
+# Compilamos saltando los tests para ir más rápido
+RUN mvn clean package -DskipTests
 
-# 3. Copiamos el JAR que genera Maven al compilar el gateway
-COPY target/api-gateway-0.0.1-SNAPSHOT.jar app.jar
-
-# 4. El Gateway corre en el puerto 8080, así que lo exponemos
+# Etapa 2: Imagen de ejecución (ligera)
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+# Copiamos el JAR generado desde la etapa de compilación
+COPY --from=build /app/target/api-gateway-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-
-# 5. Comando para iniciar el enrutador
 ENTRYPOINT ["java", "-jar", "app.jar"]
