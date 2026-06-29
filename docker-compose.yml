@@ -6,160 +6,224 @@ services:
   # =========================================================================
   postgres-db:
     image: postgres:16
+    container_name: gamehub-postgres
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: tu_contrasena_postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # =========================================================================
+  # 🔍 SERVIDOR DE DESCUBRIMIENTO (EUREKA SERVER)
+  # =========================================================================
+  eureka-server:
+    build:
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: eureka-server/Dockerfile
+    container_name: gamehub-eureka
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8761/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   # =========================================================================
   # 🚪 ENRUTAMIENTO PERIMETRAL (API GATEWAY)
   # =========================================================================
   api-gateway:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/api-gateway
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: api-gateway/Dockerfile
+    container_name: gamehub-gateway
     ports:
-      - "8080:8080"  # Puerto por donde entrarán todas las peticiones desde Postman / Frontend
+      - "8080-8089:8080-8089" # Mapeo elástico para tu puerto random.int
+    depends_on:
+      eureka-server:
+        condition: service_healthy # Espera a que Eureka responda de verdad
     environment:
-      - VIDEOJUEGO_SERVICE_URL=http://videojuego-service:8091
-      - USUARIO_SERVICE_URL=http://usuario-service:8092
-      - CARRITO_SERVICE_URL=http://carrito-service:8093
-      - DESEO_SERVICE_URL=http://deseo-service:8094
-      - LOGRO_SERVICE_URL=http://logro-service:8095
-      - RESENIA_SERVICE_URL=http://resenia-service:8096
-      - SOPORTE_SERVICE_URL=http://soporte-service:8097
-      - PAGO_SERVICE_URL=http://pago-service:8098
-      - BIBLIOTECA_SERVICE_URL=http://biblioteca-service:8099
+      - SPRING_PROFILES_ACTIVE=dev
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   # =========================================================================
   # 🎮 MICROSERVICIOS NÚCLEO (CORE SERVICES)
   # =========================================================================
   videojuego-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/videojuego-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: videojuego-service/Dockerfile
+    container_name: gamehub-videojuegos
     ports:
       - "8091:8091"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_videojuego_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   usuario-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/usuario-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: usuario-service/Dockerfile
+    container_name: gamehub-usuarios
     ports:
       - "8092:8092"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_usuario_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   # =========================================================================
   # ⚙️ MICROSERVICIOS SATÉLITES (LOGIC SERVICES)
   # =========================================================================
   carrito-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/carrito-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: carrito-service/Dockerfile
+    container_name: gamehub-carrito
     ports:
       - "8093:8093"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_carrito_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   deseo-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/deseo-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: deseo-service/Dockerfile
+    container_name: gamehub-deseos
     ports:
       - "8094:8094"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_deseo_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   logro-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/logro-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: logro-service/Dockerfile
+    container_name: gamehub-logros
     ports:
       - "8095:8095"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_logro_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   resenia-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/resenia-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: resenia-service/Dockerfile
+    container_name: gamehub-resenias
     ports:
       - "8096:8096"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_resenia_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   soporte-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/soporte-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: soporte-service/Dockerfile
+    container_name: gamehub-soporte
     ports:
       - "8097:8097"
     depends_on:
       - postgres-db
+      - eureka-server
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_soporte_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   pago-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/pago-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: pago-service/Dockerfile
+    container_name: gamehub-pagos
     ports:
       - "8098:8098"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_pago_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
 
   biblioteca-service:
     build:
-      context: ./STIMY-GAMEHUB-MICROSERVICE/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service
-      dockerfile: Dockerfile
+      context: ./STIMY-GAMEHUB-MICROSERVICE
+      dockerfile: biblioteca-service/Dockerfile
+    container_name: gamehub-biblioteca
     ports:
       - "8099:8099"
     depends_on:
-      - postgres-db
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_biblioteca_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
