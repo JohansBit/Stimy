@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.duoc.stimy</groupId>
+    <artifactId>gamehub-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging> <modules>
+    <module>eureka-server</module>
+    <module>api-gateway</module>
+    <module>usuario-service</module>
+    <module>videojuego-service</module>
+    <module>carrito-service</module>
+    <module>deseo-service</module>
+    <module>logro-service</module>
+    <module>resenia-service</module>
+    <module>soporte-service</module>
+    <module>pago-service</module>
+    <module>biblioteca-service</module>
+</modules>
+</project>
