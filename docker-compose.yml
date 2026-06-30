@@ -6,7 +6,7 @@ services:
   # =========================================================================
   postgres-db:
     image: postgres:16
-    container_name: gamehub-postgres
+    container_name: postgres-db
     ports:
       - "5432:5432"
     environment:
@@ -45,19 +45,20 @@ services:
       dockerfile: Dockerfile
     container_name: gamehub-gateway
     ports:
-      - "8080-8089:8080-8089" # Mapeo elástico para tu puerto random.int
+      - "8080-8089:8080-8089"
     depends_on:
       eureka-server:
-        condition: service_healthy # Espera a que Eureka responda de verdad
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
           cpus: '0.50'
           memory: 300M
+
   # =========================================================================
   # 🎮 MICROSERVICIOS NÚCLEO (CORE SERVICES)
   # =========================================================================
@@ -79,12 +80,12 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
-       resources:
-          limits:
-            cpus: '0.50'
-            memory: 300M
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
 
   usuario-service:
     build:
@@ -104,12 +105,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
-        resources:
-          limits:
-            cpus: '0.50'
-            memory: 300M
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M
+
   # =========================================================================
   # ⚙️ MICROSERVICIOS SATÉLITES (LOGIC SERVICES)
   # =========================================================================
@@ -131,7 +133,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
@@ -156,13 +158,12 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
           cpus: '0.50'
           memory: 300M
-
 
   logro-service:
     build:
@@ -182,7 +183,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
@@ -207,7 +208,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
@@ -222,15 +223,17 @@ services:
     ports:
       - "8097:8097"
     depends_on:
-      - postgres-db
-      - eureka-server
+      postgres-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/stimy_soporte_db_dev
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
@@ -255,7 +258,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
       resources:
         limits:
@@ -280,9 +283,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=tu_contrasena_postgres
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialG
+      - JAVA_OPTS=-Xms64m -Xmx256m -XX:+UseSerialGC
     deploy:
-        resources:
-          limits:
-            cpus: '0.50'
-            memory: 300M
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 300M

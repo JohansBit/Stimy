@@ -21,5 +21,8 @@
         <module>STIMY-GAMEHUB-MICROSERVICE/pago-service</module>
         <module>STIMY-GAMEHUB-MICROSERVICE/biblioteca-service</module>
     </modules>
+    <properties>
+        <lombok.version>1.18.32</lombok.version>
+    </properties>
 
 </project>
