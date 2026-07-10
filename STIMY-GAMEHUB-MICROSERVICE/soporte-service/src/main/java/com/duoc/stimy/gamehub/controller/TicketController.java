@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/soporte")
+@RequestMapping("/api/soportes")
 @Tag(name = "Soporte", description = "Controlador para la gestión y seguimiento de tickets de asistencia técnica de los usuarios")
 public class TicketController {
     private static final Logger log = LoggerFactory.getLogger(TicketController.class);

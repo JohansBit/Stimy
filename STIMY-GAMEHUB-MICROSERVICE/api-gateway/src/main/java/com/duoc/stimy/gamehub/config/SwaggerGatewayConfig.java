@@ -15,58 +15,45 @@ import java.util.Set;
 @Configuration
 public class SwaggerGatewayConfig {
 
-    // 1. EL TRUCO MAESTRO: Este Bean obliga a Swagger a usar la URL del Gateway para los botones
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .addServersItem(new Server().url("/"));
     }
 
-    // 2. Tu método dinámico limpio (sin métodos raros que tiren error)
+
     @Bean
     @Lazy(false)
     public Set<SwaggerUrl> apis(RouteLocator locator, SwaggerUiConfigProperties swaggerUiProperties) {
         Set<SwaggerUrl> urls = new HashSet<>();
 
-        try {
-            locator.getRoutes()
-                    .filter(route -> route.getId() != null)
-                    .subscribe(route -> {
-                        String rawId = route.getId();
-                        System.out.println("[SWAGGER-DETECTIVE] Ruta original: -> " + rawId);
+        // Primero: Forzamos la carga de rutas y las imprimimos
+        locator.getRoutes().toStream().forEach(route -> {
+            System.out.println("[DEBUG] Ruta encontrada: " + route.getId());
 
-                        String cleanName = rawId.replace("-service", "")
-                                .replace("-route", "")
-                                .toUpperCase()
-                                .trim();
+            String rawId = route.getId();
+            if (rawId == null || !rawId.contains("-route")) return; // Solo procesamos las rutas que definimos
 
-                        String apiEndpoint = cleanName.toLowerCase();
+            String name = rawId.replace("-service", "").replace("-route", "").toUpperCase();
 
-                        // Forzamos los plurales exactos de tus controladores
-                        if (apiEndpoint.contains("usuario")) apiEndpoint = "usuarios";
-                        else if (apiEndpoint.contains("videojuego")) apiEndpoint = "videojuegos";
-                        else if (apiEndpoint.contains("carrito")) apiEndpoint = "carritos";
-                        else if (apiEndpoint.contains("resenia")) apiEndpoint = "resenias";
-                        else if (apiEndpoint.contains("biblioteca")) apiEndpoint = "bibliotecas";
-                        else if (apiEndpoint.contains("deseo")) apiEndpoint = "deseos";
-                        else if (apiEndpoint.contains("logro")) apiEndpoint = "logros";
-                        else if (apiEndpoint.contains("pago")) apiEndpoint = "pagos";
+            SwaggerUrl swaggerUrl = new SwaggerUrl();
+            swaggerUrl.setName(name);
 
-                        SwaggerUrl swaggerUrl = new SwaggerUrl();
-                        swaggerUrl.setName(cleanName);
+            // CUIDADO AQUÍ: Si tu ruta es "biblioteca", aquí estás buscando "bibliotecas" (con s)
+            // Asegúrate de que la URL sea EXACTAMENTE la que devuelve el JSON del servicio
+            String url = "/api/" + name.toLowerCase() + "s/v3/api-docs";
+            swaggerUrl.setUrl(url);
 
-                        String finalUrl = "/api/" + apiEndpoint + "/v3/api-docs";
-                        swaggerUrl.setUrl(finalUrl);
+            System.out.println("[DEBUG] Agregando a Swagger: " + name + " -> " + url);
+            urls.add(swaggerUrl);
+        });
 
-                        System.out.println("[SWAGGER-DETECTIVE] URL Limpia inyectada: -> " + finalUrl);
-                        urls.add(swaggerUrl);
-                    });
-
-            swaggerUiProperties.setUrls(urls);
-        } catch (Exception e) {
-            System.err.println("[SWAGGER-GATEWAY] Error inicializando rutas de Swagger: " + e.getMessage());
+        if (urls.isEmpty()) {
+            System.err.println("[ERROR] No se encontraron rutas para el Swagger.");
         }
 
+        swaggerUiProperties.setUrls(urls);
         return urls;
     }
 }
