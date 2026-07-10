@@ -4,20 +4,92 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath></relativePath>
+    </parent>
+
+
     <groupId>com.duoc.stimy</groupId>
     <artifactId>gamehub-parent</artifactId>
     <version>1.0.0</version>
-    <packaging>pom</packaging> <modules>
-    <module>eureka-server</module>
-    <module>api-gateway</module>
-    <module>usuario-service</module>
-    <module>videojuego-service</module>
-    <module>carrito-service</module>
-    <module>deseo-service</module>
-    <module>logro-service</module>
-    <module>resenia-service</module>
-    <module>soporte-service</module>
-    <module>pago-service</module>
-    <module>biblioteca-service</module>
-</modules>
+    <packaging>pom</packaging>
+
+   <properties>
+       <java.version>21</java.version>
+       <spring-cloud.version>2023.0.1</spring-cloud.version>
+       <springdoc.version>2.5.0</springdoc.version>
+       <lombok.version>1.18.32</lombok.version>
+   </properties>
+
+
+    <modules>
+        <module>STIMY-GAMEHUB-MICROSERVICE/eureka-server</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/api-gateway</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/usuario-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/videojuego-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/carrito-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/deseo-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/logro-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/resenia-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/soporte-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/pago-service</module>
+        <module>STIMY-GAMEHUB-MICROSERVICE/biblioteca-service</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <parameters>true</parameters>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>

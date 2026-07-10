@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="142ffa1a-56ca-4aa1-bd91-965975030fb1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Stimy.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/java/com/duoc/stimy/gamehub/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/java/com/duoc/stimy/gamehub/ApiGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/java/com/duoc/stimy/gamehub/config/SwaggerGatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/java/com/duoc/stimy/gamehub/config/SwaggerGatewayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/api-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/biblioteca-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/carrito-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/carrito-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/deseo-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/deseo-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/eureka-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/logro-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/logro-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/pago-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/pago-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/resenia-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/resenia-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/main/java/com/duoc/stimy/gamehub/controller/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/main/java/com/duoc/stimy/gamehub/controller/TicketController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/test/java/com/duoc/stimy/gamehub/ReseniaServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/test/java/com/duoc/stimy/gamehub/SoporteServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/soporte-service/src/test/java/com/duoc/stimy/gamehub/TicketServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/usuario-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/usuario-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/videojuego-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/STIMY-GAMEHUB-MICROSERVICE/videojuego-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;JohansBit&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JohansBit/Stimy.git&quot;,
+    &quot;accountId&quot;: &quot;bc3817a1-652d-4a8a-a433-d3e12b050ffd&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3GHj62CzQ75lFXAjFuLqVc3rP8Z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.gamehub-parent [clean,compile].executor": "Run",
+    "Maven.gamehub-parent [clean,install].executor": "Run",
+    "Maven.gamehub-parent [clean,package,-DskipTest].executor": "Run",
+    "Maven.gamehub-parent [clean,package...].executor": "Run",
+    "Maven.gamehub-parent [clean].executor": "Run",
+    "Maven.gamehub-parent [compile].executor": "Run",
+    "Maven.gamehub-parent [package].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean compile" />
+      <command value="mvn clean package -DskipTest" />
+      <command value="mvn clean package -DskipTests" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="142ffa1a-56ca-4aa1-bd91-965975030fb1" name="Changes" comment="" />
+      <created>1783635212010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1783635212010</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
